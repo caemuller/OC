@@ -3,20 +3,18 @@ using HiGHS
 using Printf
 
 function read_instance(filename::String)
-    # Novo formato:
+    # Formato atual:
     # Linha 1: n
     # Linha 2: m
     # Próximas n linhas: l_i u_i
     open(filename, "r") do f
-        line = readline(f)
-        n = parse(Int, line)
-        line = readline(f)
-        m = parse(Int, line)
+        n = parse(Int, readline(f))
+        m = parse(Int, readline(f))
         L = Vector{Int}(undef, n)
         U = Vector{Int}(undef, n)
         for i in 1:n
-            line = readline(f)
-            li, ui = parse.(Int, split(line))
+            li_ui = readline(f)
+            li, ui = parse.(Int, split(li_ui))
             L[i] = li
             U[i] = ui
         end
@@ -29,7 +27,11 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
     n, m, L, U = read_instance(filename)
 
     model = Model(HiGHS.Optimizer)
+    # Ajustar atributos para tentar respeitar o tempo
     set_optimizer_attribute(model, "time_limit", time_limit)
+    # Desativar presolve para evitar travar nessa fase
+    set_optimizer_attribute(model, "presolve", "off")
+    # Ajustar semente
     set_attribute(model, "random_seed", seed)
 
     # Criação das variáveis y[i,k]
@@ -58,8 +60,9 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
     optimize!(model)
 
     status = termination_status(model)
+    solve_status = primal_status(model)
 
-    # Checar se há solução viável encontrada
+    # Verificar se alguma solução viável foi encontrada
     if has_values(model)
         best_value = objective_value(model)
         bound = objective_bound(model)
@@ -82,7 +85,7 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
 
         return x, best_value
     else
-        # Nenhuma solução foi encontrada dentro do limite de tempo
+        # Nenhuma solução viável encontrada (pode ter estourado o tempo)
         @printf "Status: %s\n" string(status)
         @printf "Nenhuma solução viável encontrada dentro do limite de tempo.\n"
         @printf "Tempo decorrido: %.2f\n" solve_time(model)
@@ -92,7 +95,7 @@ end
 
 # Programa principal
 if length(ARGS) < 3
-    println("Uso: julia solve_integer.jl <arquivo_entrada> <seed> <time_limit>")
+    println("Uso: julia linear.jl <arquivo_entrada> <seed> <time_limit>")
     exit(1)
 end
 
