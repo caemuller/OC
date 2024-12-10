@@ -1,45 +1,96 @@
 # Relatório de Entrega
 
+#### Alunos: 
 
-Formulação Inteira
+* Caetano
+* Marcos L. K. Reckers - 00315653
+* Miguel
 
-**Ideia da Modelagem Linear:**
+### Formulação Inteira:
 
-O problema original é escolher xix_i (número de bolas no recipiente i) com li≤xi≤uil_i \le x_i \le u_i e ∑ixi=m\sum_i x_i = m, maximizando ∑ixi(xi+1)2\sum_i \frac{x_i(x_i+1)}{2}. Como essa função objetivo é não-linear, precisamos linearizá-la.
+**Variáveis de decisão:**
 
-**Linearização:**
+Para cada recipiente  $ i \in \{1, \dots , n\}$ e para cada valor inteiro $ k \in \{1,\dots,u_i\}$, definimos uma variável binária:
 
-Podemos usar variáveis binárias auxiliares. Definimos:
+$$
+y_{i,k} = \begin{cases}
+1 & \text{se } x_i \ge k \\
+0 & \text{caso contrário}
+\end{cases}
+$$
 
-* Variáveis binárias yi,k∈{0,1}y_{i,k} \in \{0,1\} para cada recipiente i e para cada k em [1,ui][1, u_i] para indicar se o recipiente i tem pelo menos k bolas.
+**Função Objetivo:**
 
-Assim:
+A função objetivo original é maximizar:
 
-* Se yi,k=1y_{i,k} = 1, significa que xi≥kx_i \ge k.
-* A contagem de bolas em i, xi=∑k=1uiyi,kx_i = \sum_{k=1}^{u_i} y_{i,k}.
-* O lucro em i é ∑k=1uik⋅yi,k\sum_{k=1}^{u_i} k \cdot y_{i,k}, pois se o recipiente tem ao menos k bolas, é adicionado o valor k ao seu lucro.
+$$
+\sum_{i=1}^{n} x_i \frac{(x_i+1)}{2}.
+$$
+
+Observando que:
+
+$$
+x_i = \sum_{k=1}^{u_i} y_{i,k}
+$$
+
+e o lucro correspondente pode ser reescrito como:
+
+$$
+\sum_{k=1}^{u_i} k \cdot y_{i,k},
+$$
+
+a função objetivo linearizada é:
+
+$$
+\max \sum_{i=1}^{n} \sum_{k=1}^{u_i} k \cdot y_{i,k}.
+$$
 
 **Restrições:**
 
-1. **Monotonicidade** : se yi,k=1y_{i,k} = 1, então yi,k−1y_{i,k-1} também deve ser 1. Isso garante a coerência da contagem.
+1. **Monotonicidade:**
+   Se o recipiente $i$ tem pelo menos $k$ bolasa $(y_{i,k} = 1)$, então também tem pelo menos $k-1$ bolas $(y_{i,k-1} =1)$. Isso garante a coerência da contagem incremental:
 
-   yi,k≤yi,k−1∀i,k=2,…,uiy_{i,k} \le y_{i,k-1} \quad \forall i, k=2,\dots,u_i
+   $$
+   y_{i,k} \le y_{i,k-1} \quad \forall i, \; \forall k=2,\dots,u_i.
+   $$
+2. **Limites mínimo e máximo:**
 
-1. **Limites mínimo e máximo** :
+   Cada recipiente $i$ deve ter um número de bolas entre $l_{i}$e $u_{i}$.  Como:  $\sum_{k=1}^{u_i} y_{i,k} = x_i $, temos:
 
-   li≤∑k=1uiyi,k≤ui∀il_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad \forall i
+   $$
+   l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad \forall i.
+   $$
+3. **Quantidade total de bolas:**
 
-1. **Soma total de bolas** :
+   $$
+   \sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m.
+   $$
+4. **Domínio das variáveis:**
 
-   ∑i=1n∑k=1uiyi,k=m\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m
+   $$
+   y_{i,k} \in \{0,1\} \quad \forall i, \; \forall k=1,\dots,u_i.
+   $$
 
-1. **Domínio** :
+**Modelo Final:**
 
-   yi,k∈{0,1}y_{i,k} \in \{0,1\}
+$$
+\max \sum_{i=1}^{n} \sum_{k=1}^{u_i} k \cdot y_{i,k}
+$$
 
- **Função Objetivo** :
+Sujeito a:
 
-Maximizar
+$$
+y_{i,k} \le y_{i,k-1} \quad \forall i, \; \forall k=2,\dots,u_i
+$$
 
-∑i=1n∑k=1uik⋅yi,k\sum_^ \sum_^ k \cdot y_
---------------------------------------------
+$$
+l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad \forall i
+$$
+
+$$
+\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m
+$$
+
+$$
+y_{i,k} \in \{0,1\} \quad \forall i, \; \forall k=1,\dots,u_i
+$$
