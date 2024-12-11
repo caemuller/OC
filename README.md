@@ -1,16 +1,16 @@
 # Relatório de Entrega
 
-#### Alunos: 
+#### Alunos:
 
-* Caetano
-* Marcos L. K. Reckers - 00315653
-* Miguel
+- Caetano
+- Marcos L. K. Reckers - 00315653
+- Miguel
 
 ### Formulação Inteira:
 
 **Variáveis de decisão:**
 
-Para cada recipiente  $ i \in \{1, \dots , n\}$ e para cada valor inteiro $ k \in \{1,\dots,u_i\}$, definimos uma variável binária:
+Para cada recipiente $ i \in \{1, \dots , n\}$ e para cada valor inteiro $ k \in \{1,\dots,u_i\}$, definimos uma variável binária:
 
 $$
 y_{i,k} = \begin{cases}
@@ -55,16 +55,12 @@ $$
    $$
 2. **Limites mínimo e máximo:**
 
-   Cada recipiente $i$ deve ter um número de bolas entre $l_{i}$e $u_{i}$.  Como:  $\sum_{k=1}^{u_i} y_{i,k} = x_i $, temos:
+   Cada recipiente $i$ deve ter um número de bolas entre $l_{i}$e $u_{i}$. Como: $\sum_{k=1}^{u_i} y_{i,k} = x_i $, temos:
 
    $$
    l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad \forall i.
    $$
 3. **Quantidade total de bolas:**
-
-   $$
-   \sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m.
-   $$
 4. **Domínio das variáveis:**
 
    $$
