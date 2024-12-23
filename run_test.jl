@@ -17,6 +17,7 @@ function test_and_log_results(func::Function, test_cases::Vector, output_file::S
         end
     end
     
+    
     CSV.write(output_file, results)
     println("Results written to $(output_file)")
 end
