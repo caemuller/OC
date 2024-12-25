@@ -29,7 +29,7 @@ $$
 \sum_{i=1}^{n} x_i \frac{(x_i+1)}{2}.
 $$
 
-Observando que:
+Observando que $x_i$ é o valor do lucro do $bin_i$ :
 
 $$
 x_i = \sum_{k=1}^{u_i} y_{i,k}
@@ -50,44 +50,45 @@ $$
 ### **Restrições:**
 
 1. **Monotonicidade:**
-   Se o recipiente $i$ tem pelo menos $k$ bolasa $(y_{i,k} = 1)$, então também tem pelo menos $k-1$ bolas $(y_{i,k-1} =1)$. Isso garante a coerência da contagem incremental:
+   Se o recipiente $i$ tem pelo menos $k$ bolas $(y_{i,k} = 1)$, então também tem pelo menos $k-1$ bolas $(y_{i,k-1} =1)$. Isso garante a coerência da contagem incremental:
 
    $$
    y_{i,k} \le y_{i,k-1} \quad  \begin{cases}
-   \forall i & =1 ,\dots, n. \\
-   \forall k & =2 ,\dots,u_i.
+   \forall i \in [n]\\
+   \forall k  =2 ,\dots,u_i.
    \end{cases}
    $$
 2. **Limites mínimo e máximo:**
 
-   Cada recipiente $i$ deve ter um número de bolas entre $l_{i}$e $u_{i}$. Como: $\sum_{k=1}^{u_i} y_{i,k} = x_i $, temos:
+   Cada recipiente $i$ deve ter um número de bolas entre $l_{i}$ e $u_{i}$.
+   Como:
 
    $$
-   l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad  \begin{cases}
-   \forall i & =1 ,\dots, n. \\
-   \forall k & =1,\dots,u_i.
-   \end{cases}
+   \sum_{k=1}^{u_i} y_{i,k} = x_i
+   $$
+
+   Temos:
+
+   $$
+   l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i \quad \forall i \in [n]
    $$
 3. **Quantidade total de bolas:**
    A soma total de bolas distribuídas entre os recipientes deve ser igual a uma quantidade total $m$:
 
    $$
-   \sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m  \quad  \begin{cases}
-   \forall i & =1 ,\dots, n. \\
-   \forall k & =1,\dots,u_i.
-   \end{cases}
+   \sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m
    $$
 4. **Domínio das variáveis:**
 
    $$
    y_{i,k} \in \{0,1\} \quad  \begin{cases}
-   \forall i & =1 ,\dots, n. \\
-   \forall k & =1,\dots,u_i.
+   \forall i \in [n]. \\
+   \forall k =1,\dots,u_i.
    \end{cases}
    $$
 
    $$
-   x_{i} \in \Z \quad \forall i = 1, \dots, n.
+   x_{i} \in \Z^+ \quad \forall i = 1, \dots, n.
    $$
 
 ### **Modelo Final:**
@@ -100,29 +101,23 @@ Sujeito a:
 
 $$
 y_{i,k} \le y_{i,k-1}  \quad  \begin{cases}
-\forall i & =1 ,\dots, n. \\
-\forall k & =2,\dots,u_i.
+\forall i \in [n] \\
+\forall k=2,\dots,u_i.
 \end{cases}
 $$
 
 $$
-l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \begin{cases}
-\forall i & =1 ,\dots, n. \\
-\forall k & =1,\dots,u_i.
-\end{cases}
+l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \forall i \in [n] 
 $$
 
 $$
-\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m  \quad  \begin{cases}
-\forall i & =1 ,\dots, n. \\
-\forall k & =1,\dots,u_i.
-\end{cases}
+\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m 
 $$
 
 $$
 y_{i,k} \in \{0,1\}  \quad  \begin{cases}
-\forall i & =1 ,\dots, n. \\
-\forall k & =1,\dots,u_i.
+\forall i \in [n] \\
+\forall k =1,\dots,u_i.
 \end{cases}
 $$
 
@@ -136,7 +131,6 @@ $$
    using Pkg
    Pkg.add("JuMP")
    Pkg.add("HiGHS")
-   Pkg.add("Printf")
    ```
 
 #### Formato do Arquivo de Entrada
