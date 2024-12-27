@@ -48,101 +48,68 @@ function feasible(x, L, U, m)
     return true
 end
 
-function update_solution_value(x, current_val, i, change)
-    # Incrementally updates the solution value for a change in x[i]
-    old_val = x[i] * (x[i] + 1) ÷ 2
-    new_xi = x[i] + change
-    new_val = new_xi * (new_xi + 1) ÷ 2
-    return current_val - old_val + new_val
-end
-
-
 ########## Construção Gulosa-Randômica (GRASP) ##########
 function construct_solution(n, m, L, U; alpha=0.1)
     x = copy(L)
     bolas_colocadas = sum(L)
     sobra = m - bolas_colocadas
 
-    # Precompute the initial priority queue as a max-heap with Int64 for the gain values
-    priority_queue = [(i, (x[i] + 1) * (x[i] + 2) ÷ 2 - x[i] * (x[i] + 1) ÷ 2) for i in 1:n if x[i] < U[i]]
-    sort!(priority_queue, by = t -> t[2], rev = true)
-
+    priority_queue = [(i, x[i] + 1) for i in 1:n if x[i] < U[i]]
     while sobra > 0 && !isempty(priority_queue)
+        # Sort only once to determine the cutoff
+        sort!(priority_queue, by = t -> t[2], rev = true)
         melhor_ganho = priority_queue[1][2]
         cutoff = melhor_ganho - alpha * melhor_ganho
-
-        # Filter the RCL
         RCL = [t[1] for t in priority_queue if t[2] >= cutoff]
 
         escolhido = RCL[rand(1:length(RCL))]
         x[escolhido] += 1
         sobra -= 1
 
-        if x[escolhido] < U[escolhido]
-            new_gain = (x[escolhido] + 1) * (x[escolhido] + 2) ÷ 2 - x[escolhido] * (x[escolhido] + 1) ÷ 2
-        else
-            new_gain = -1_000_000 
-        end
-
-        # Update the priority queue efficiently
-        # Look for the element with the same index and update its gain
-        for i in 1:length(priority_queue)
-            if priority_queue[i][1] == escolhido
-                priority_queue[i] = (escolhido, new_gain)
-                break
-            end
-        end
-
-        # Remove invalid elements (those with gain less than -1_000_000)
-        priority_queue = filter(t -> t[2] > -1_000_000, priority_queue)
-
-        # Re-sort the priority queue
-        sort!(priority_queue, by = t -> t[2], rev = true)
+        # Update the priority queue
+        priority_queue = [(i, x[i] + 1) for i in 1:n if x[i] < U[i]]
     end
 
     return x
 end
 
-
-
 ########## Busca Local ##########
 
-function local_search(x, L, U, m; max_no_improve=50)
+function local_search(x, L, U, m; max_no_improve=100)
     best_x = copy(x)
     best_val = solution_value(x)
     no_improve = 0
-    n = length(x)
 
     while no_improve < max_no_improve
         improved = false
-        for i in 1:n
-            if x[i] > L[i]
-                for j in 1:n
-                    if i != j && x[j] < U[j]
-                        # Try moving one ball from i to j
-                        x[i] -= 1
-                        x[j] += 1
-                        new_val = solution_value(x)
-                        
-                        if new_val > best_val
-                            best_val = new_val
-                            best_x = copy(x)
-                            improved = true
-                            no_improve = 0
-                        else
-                            # Revert move if no improvement
-                            x[i] += 1
-                            x[j] -= 1
-                        end
+        for i in 1:length(x)
+            for j in 1:length(x)
+                if i != j && x[i] > L[i] && x[j] < U[j]
+                    # Tenta mover uma bola de i para j
+                    old_val = best_val
+                    # Tenta a mudança
+                    x[i] -= 1
+                    x[j] += 1
+                    new_val = solution_value(x)
+                    if new_val > best_val
+                        best_val = new_val
+                        best_x = copy(x)
+                        improved = true
+                        no_improve = 0
+                    else
+                        # Reverte se não melhorou
+                        x[i] += 1
+                        x[j] -= 1
                     end
                 end
             end
         end
-        no_improve += !improved
+        if !improved
+            no_improve += 1
+        end
     end
     return best_x
 end
-
 
 ########## GRASP Completo ##########
 
