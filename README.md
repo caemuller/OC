@@ -4,7 +4,7 @@
 
 - **Caetano Müller - 00333371**
 - **Marcos L. K. Reckers - 00315653**
-- **Miguel**
+- **Miguel Lemmertz Schwarzbold - 00342191**
 
 ## Formulação Inteira:
 
@@ -107,11 +107,11 @@ y_{i,k} \le y_{i,k-1}  \quad  \begin{cases}
 $$
 
 $$
-l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \forall i \in [n] 
+l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \forall i \in [n]
 $$
 
 $$
-\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m 
+\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m
 $$
 
 $$
@@ -121,71 +121,45 @@ y_{i,k} \in \{0,1\}  \quad  \begin{cases}
 \end{cases}
 $$
 
-## Como rodar o programa em Julia:
+### Testes:
 
-#### Pré-requisitos
-
-1. **Julia**: Certifique-se de ter o Julia instalado. Você pode baixá-lo em [https://julialang.org/](https://julialang.org/).
-2. **Dependências**: Instale os pacotes necessários executando os comandos abaixo no REPL do Julia:
-   ```julia
-   using Pkg
-   Pkg.add("JuMP")
-   Pkg.add("HiGHS")
-   ```
-
-#### Formato do Arquivo de Entrada
-
-O programa espera um arquivo de entrada com o seguinte formato:
-
-1. Primeira linha: Número de variáveis \(n\).
-2. Segunda linha: Soma total de bolas \(m\).
-3. Próximas \(n\) linhas: Dois valores \(l_i\) (limite inferior) e \(u_i\) (limite superior) separados por espaço.
-
-**Exemplo de arquivo de entrada (`input.txt`):**
-
-> 3
-> 10
-> 1 5
-> 2 4
-> 1 3
-
-#### Uso
-
-1. Salve o código em um arquivo chamado `linear.jl`.
-2. Para rodar o programa, use o seguinte comando no terminal:
-
-   ```bash
-   julia linear.jl <arquivo_entrada> <seed> <time_limit>
-   ```
-
-   - `<arquivo_entrada>`: Caminho para o arquivo contendo os dados do problema.
-   - `<seed>`: Semente para o gerador de números aleatórios (um número inteiro).
-   - `<time_limit>`: Limite de tempo em segundos para resolver o problema (um número de ponto flutuante).
-
-**Exemplo de execução:**
-
-```bash
-julia linear.jl input.txt 42 60.0
-```
-
-#### Saída
-
-O programa exibirá informações sobre o problema e a solução encontrada:
-
-* **Status** : Estado final da solução.
-* **Melhor valor encontrado** : Valor da função objetivo na melhor solução.
-* **Bound** : Limite calculado pelo solver.
-* **Solução** : Valores das variáveis $x_i$.
-* **Tempo decorrido** : Tempo total de execução em segundos.
-
-**Exemplo de saída:**
-
-```
-Status: OPTIMAL
-Melhor valor encontrado: 25.00
-Bound: 25.00
-Solução: [3, 4, 3]
-Tempo decorrido: 12.34
-```
-
-## Meta-Heuristica: GRASP
+* 01.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 02.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 03.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 04.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 05.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 06.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 07.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 08.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 09.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 10.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
