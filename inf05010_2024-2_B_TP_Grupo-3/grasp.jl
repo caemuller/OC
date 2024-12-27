@@ -120,6 +120,7 @@ end
 ########## GRASP Completo ##########
 
 function grasp(filename, max_iterations, time_limit, seed)
+    @printf("GRASP para o arquivo %s\n", filename)
     n, m, L, U = read_instance(filename)
     alpha=0.1
     max_no_improve=100
@@ -153,7 +154,8 @@ function grasp(filename, max_iterations, time_limit, seed)
             best_val = val
             best_x = copy(x_local)
             elapsed = time() - start_time
-            @printf("%.2f %d %s\n", elapsed, best_val, string(best_x))
+            #@printf("%.2f %d %s\n", elapsed, best_val, string(best_x))
+            @printf("%.2f %d\n", elapsed, best_val)
         end
         num_iterations = iter
     end
@@ -173,9 +175,10 @@ function grasp(filename, max_iterations, time_limit, seed)
         @printf("Tempo total: %.2f s\n", total_time)
         @printf("Número de iterações: %d\n", num_iterations)
     end
+    @printf("\n\n")
 end
 
-########## Programa Principal ##########
+
 function main()
     if length(ARGS) < 4
         println("Uso: julia solve_metaheuristica.jl <arquivo_instancia> <seed> <max_iterations> <time_limit(segundos)>")
@@ -188,5 +191,3 @@ function main()
     time_limit = parse(Float64, ARGS[4])
     grasp(filename, max_iterations, time_limit, seed)
 end
-
-main()

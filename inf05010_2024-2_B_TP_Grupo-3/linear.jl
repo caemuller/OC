@@ -137,4 +137,3 @@ function main()
     solve_integer_problem(filename, seed, time_limit)
 end
 
-main()

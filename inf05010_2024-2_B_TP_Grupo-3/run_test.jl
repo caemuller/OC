@@ -35,4 +35,13 @@ time_limit = 300.0
 max_iterations = 1000
 
 #run_linear_on_files(test_files, seed, time_limit)
-run_grasp_on_files(test_files, seed, time_limit, max_iterations)
+grasp(test_files[1], max_iterations, time_limit, seed)
+grasp(test_files[2], max_iterations, time_limit, seed)
+grasp(test_files[3], max_iterations, time_limit, seed)
+grasp(test_files[4], max_iterations, time_limit, seed)
+grasp(test_files[5], max_iterations, time_limit, seed)
+grasp(test_files[6], max_iterations, time_limit, seed)
+grasp(test_files[7], max_iterations, time_limit, seed)
+grasp(test_files[8], max_iterations, time_limit, seed)
+grasp(test_files[9], max_iterations, time_limit, seed)
+grasp(test_files[10], max_iterations, time_limit, seed)
