@@ -25,21 +25,34 @@ function read_instance(filename::String)
     end
 end
 
-function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
+function solve_integer_problem(filename::String, seed::Int, time_limit::Float64, csv::Bool=false)
+    #-------------------------------------------------------------------------------
+    # INICIALIZAÇÃO:
+
     # Ler a instância
     n, m, L, U = read_instance(filename)
 
+    # Criar o modelo
     model = Model(HiGHS.Optimizer)
+    
     # Ajustar atributos para tentar respeitar o tempo
     set_optimizer_attribute(model, "time_limit", time_limit)
+    
     # Desativar presolve para evitar travar nessa fase
     set_optimizer_attribute(model, "presolve", "off")
-    # Ajustar semente
+    
+    # Ajustar seed
     set_attribute(model, "random_seed", seed)
+    #-------------------------------------------------------------------------------
 
-    # Criação das variáveis y[i,k]
+    #-------------------------------------------------------------------------------
+    # Criação das variáveis y[i,k]:
     y = [ @variable(model, base_name = "y_$(i)_", [k=1:U[i]], Bin) for i in 1:n ]
+    #-------------------------------------------------------------------------------
 
+    #-------------------------------------------------------------------------------
+    # RESTRIÇÕES:
+    
     # Restrição de monotonicidade: y[i,k] <= y[i,k-1]
     for i in 1:n
         for k in 2:U[i]
@@ -55,11 +68,17 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
 
     # Soma total de bolas:
     @constraint(model, sum(sum(y[i][k] for k=1:U[i]) for i=1:n) == m)
+    #-------------------------------------------------------------------------------
 
+
+    #-------------------------------------------------------------------------------
     # Função objetivo:
     @objective(model, Max, sum(sum(k*y[i][k] for k=1:U[i]) for i=1:n))
+    #-------------------------------------------------------------------------------
 
-    # Otimizar
+    #-------------------------------------------------------------------------------
+    # OTIMIZAÇÃO:
+
     optimize!(model)
 
     status = termination_status(model)
@@ -83,6 +102,7 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
             end
         end
 
+        # Exibir resultados
         @printf "Status: %s\n" string(status)
         @printf "Melhor valor encontrado: %.2f\n" best_value
         @printf "Bound: %.2f\n" bound
@@ -90,50 +110,56 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
         @printf "Tempo decorrido: %.2f\n" solve_time
         @printf "Número de iterações: %d\n" num_iterations
 
-        # Salvar resultados em um arquivo CSV
-        results = DataFrame(
-            Status = string(status),
-            Melhor_valor_encontrado = replace(string(round(best_value, digits = 2)), "." => ""),
-            Bound = replace(string(bound), "." => ""),
-            Solução = string(x),
-            Tempo_decorrido = round(solve_time, digits=2),
-            Número_de_iterações = num_iterations
-        )
-        CSV.write(filename * ".csv", results)
+        if csv
+            # Salvar resultados em um arquivo CSV
+            results = DataFrame(
+                Status = string(status),
+                Melhor_valor_encontrado = replace(string(round(best_value, digits = 2)), "." => ""),
+                Bound = replace(string(bound), "." => ""),
+                Solução = string(x),
+                Tempo_decorrido = round(solve_time, digits=2),
+                Número_de_iterações = num_iterations
+            )
+            CSV.write(filename * ".csv", results)
+        end
 
         return x, best_value
     else
         # Nenhuma solução viável encontrada (pode ter estourado o tempo)
         @printf "Status: %s\n" string(status)
         @printf "Nenhuma solução viável encontrada dentro do limite de tempo.\n"
-        @printf "Tempo decorrido: %.2f\n" solve_time
+        @printf "Tempo decorrido: %.2f\n" round(solve_time, digits=2)
         @printf "Número de iterações: %d\n" num_iterations
 
-        # Salvar resultados em um arquivo CSV
-        results = DataFrame(
-            Status = string(status),
-            Melhor_valor_encontrado = -Inf,
-            Bound = -Inf,
-            Solução = "Nenhuma",
-            Tempo_decorrido = solve_time,
-            Número_de_iterações = num_iterations
-        )
-        CSV.write(filename * ".csv", results)
+        if csv
+            # Salvar resultados em um arquivo CSV
+            results = DataFrame(
+                Status = string(status),
+                Melhor_valor_encontrado = -Inf,
+                Bound = -Inf,
+                Solução = "Nenhuma",
+                Tempo_decorrido = solve_time,
+                Número_de_iterações = num_iterations
+            )
+            CSV.write(filename * ".csv", results)
+        end
 
         return nothing, -Inf
     end
 end
 
 function main()
-    if length(ARGS) < 3
-        println("Uso: julia Linear.jl <file> <seed> <time_limit>")
+    if length(ARGS) < 4
+        println("Uso: julia Linear.jl <file> <seed> <time_limit> <optional: -csv>")
         return
     end
 
     filename = ARGS[1]
     seed = parse(Int, ARGS[2])
     time_limit = parse(Float64, ARGS[3])
+    csv = length(ARGS) > 4 && ARGS[4] == "-csv"
 
-    solve_integer_problem(filename, seed, time_limit)
+    solve_integer_problem(filename, seed, time_limit, csv)
 end
 
+main()
