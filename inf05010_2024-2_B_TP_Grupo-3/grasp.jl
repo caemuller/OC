@@ -119,12 +119,16 @@ end
 
 ########## GRASP Completo ##########
 
-function grasp(n, m, L, U; max_iterations, alpha=0.1, time_limit, seed)
+function grasp(filename, max_iterations, time_limit, seed)
+    n, m, L, U = read_instance(filename)
+    alpha=0.1
+    max_no_improve=100
     Random.seed!(seed)
     start_time = time()
     best_x = nothing
     best_val = -Inf
     terminated_by_time = false
+    num_iterations = 0
 
     for iter in 1:max_iterations
         if time() - start_time > time_limit
@@ -160,30 +164,29 @@ function grasp(n, m, L, U; max_iterations, alpha=0.1, time_limit, seed)
         println("Encerrado por número máximo de iterações.")
     end
 
-    return best_x, best_val, time() - start_time , num_iterations
+    total_time = time() - start_time
+    if best_x === nothing
+        println("Não encontrou solução viável.")
+    else
+        @printf("Melhor solução final: %s\n", string(best_x))
+        @printf("Valor: %d\n", best_val)
+        @printf("Tempo total: %.2f s\n", total_time)
+        @printf("Número de iterações: %d\n", num_iterations)
+    end
 end
 
 ########## Programa Principal ##########
-
-if length(ARGS) < 4
-    println("Uso: julia solve_metaheuristica.jl <arquivo_instancia> <seed> <max_iterations> <time_limit(segundos)>")
-    exit(1)
+function main()
+    if length(ARGS) < 4
+        println("Uso: julia solve_metaheuristica.jl <arquivo_instancia> <seed> <max_iterations> <time_limit(segundos)>")
+        exit(1)
+    end
+    
+    filename = ARGS[1]
+    seed = parse(Int, ARGS[2])
+    max_iterations = parse(Int, ARGS[3])
+    time_limit = parse(Float64, ARGS[4])
+    grasp(filename, max_iterations, time_limit, seed)
 end
 
-filename = ARGS[1]
-seed = parse(Int, ARGS[2])
-max_iters = parse(Int, ARGS[3])
-time_lim = parse(Float64, ARGS[4])
-
-n, m, L, U = read_instance(filename)
-
-best_solution, best_val, total_time, num_iter = grasp(n, m, L, U; max_iterations=max_iters, alpha=0.1, time_limit=time_lim, seed=seed)
-
-if best_solution === nothing
-    println("Não encontrou solução viável.")
-else
-    @printf("Melhor solução final: %s\n", string(best_solution))
-    @printf("Valor: %d\n", best_val)
-    @printf("Tempo total: %.2f s\n", total_time)
-    @printf("Número de iterações: %d\n", num_iter)
-end
+main()
