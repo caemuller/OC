@@ -88,9 +88,9 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64,
     solve_time = MOI.get(model, MOI.SolveTimeSec())
 
     # Verificar se alguma solução viável foi encontrada
+    bound = MOI.get(model, MOI.ObjectiveBound())
     if has_values(model)
         best_value = objective_value(model)
-        bound = MOI.get(model, MOI.ObjectiveBound())
 
         # Construção da solução x_i a partir de y:
         x = zeros(Int, n)
@@ -110,41 +110,14 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64,
         @printf "Tempo decorrido: %.2f\n" solve_time
         @printf "Número de iterações: %d\n" num_iterations
 
-        if csv
-            # Salvar resultados em um arquivo CSV
-            results = DataFrame(
-                Status = string(status),
-                Melhor_valor_encontrado = replace(string(round(best_value, digits = 2)), "." => ""),
-                Bound = replace(string(bound), "." => ""),
-                Solução = string(x),
-                Tempo_decorrido = round(solve_time, digits=2),
-                Número_de_iterações = num_iterations
-            )
-            CSV.write(filename * ".csv", results)
-        end
-
-        return x, best_value
+        return x, best_value, solve_time, num_iterations, status, bound
     else
         # Nenhuma solução viável encontrada (pode ter estourado o tempo)
         @printf "Status: %s\n" string(status)
         @printf "Nenhuma solução viável encontrada dentro do limite de tempo.\n"
         @printf "Tempo decorrido: %.2f\n" round(solve_time, digits=2)
         @printf "Número de iterações: %d\n" num_iterations
-
-        if csv
-            # Salvar resultados em um arquivo CSV
-            results = DataFrame(
-                Status = string(status),
-                Melhor_valor_encontrado = -Inf,
-                Bound = -Inf,
-                Solução = "Nenhuma",
-                Tempo_decorrido = solve_time,
-                Número_de_iterações = num_iterations
-            )
-            CSV.write(filename * ".csv", results)
-        end
-
-        return nothing, -Inf
+        return  nothing, -Inf, solve_time, num_iterations, status, bound
     end
 end
 
@@ -157,9 +130,8 @@ function main()
     filename = ARGS[1]
     seed = parse(Int, ARGS[2])
     time_limit = parse(Float64, ARGS[3])
-    csv = length(ARGS) > 4 && ARGS[4] == "-csv"
 
-    solve_integer_problem(filename, seed, time_limit, csv)
+    solve_integer_problem(filename, seed, time_limit)
 end
 
 main()

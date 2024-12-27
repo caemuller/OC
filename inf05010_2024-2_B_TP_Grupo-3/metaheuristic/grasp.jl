@@ -130,6 +130,7 @@ function grasp(filename, max_iterations, time_limit, seed)
     best_val = -Inf
     terminated_by_time = false
     num_iterations = 0
+    status = "nothing"
 
     for iter in 1:max_iterations
         if time() - start_time > time_limit
@@ -161,23 +162,26 @@ function grasp(filename, max_iterations, time_limit, seed)
     end
 
     if terminated_by_time
-        println("Encerrado por limite de tempo.")
+        status = "time_limit"
     else
-        println("Encerrado por número máximo de iterações.")
+        status = "max_iterations"
     end
 
     total_time = time() - start_time
     if best_x === nothing
         println("Não encontrou solução viável.")
     else
-        @printf("Melhor solução final: %s\n", string(best_x))
+        @printf("Status: %s\n", status)
         @printf("Valor: %d\n", best_val)
         @printf("Tempo total: %.2f s\n", total_time)
         @printf("Número de iterações: %d\n", num_iterations)
+        @printf("Melhor solução final: %s\n", string(best_x))
     end
     @printf("\n\n")
-end
 
+    return status, best_val, total_time, num_iterations, best_x
+    
+end
 
 function main()
     if length(ARGS) < 4
@@ -190,4 +194,5 @@ function main()
     max_iterations = parse(Int, ARGS[3])
     time_limit = parse(Float64, ARGS[4])
     grasp(filename, max_iterations, time_limit, seed)
+
 end

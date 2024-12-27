@@ -1,5 +1,11 @@
 ## Como rodar o programa em Julia:
 
+#### Testes automatizados:
+
+* Desenvolvemos um script que roda todas as instãncias e salva os resultados em um CSV, visite[ /test/how_run_tests.md](../tests/how_run_tests.md) para mais informações.
+
+---
+
 #### Pré-requisitos
 
 1. **Julia**: Certifique-se de ter o Julia instalado. Você pode baixá-lo em [https://julialang.org/](https://julialang.org/).
@@ -9,7 +15,7 @@
    using Pkg
    Pkg.add("JuMP")
    Pkg.add("HiGHS")
-   Pkg.add()
+   Pkg.add("Printf")
    ```
 
 #### Formato do Arquivo de Entrada
@@ -30,21 +36,22 @@ O programa espera um arquivo de entrada com o seguinte formato:
 
 #### Uso
 
-1. Salve o código em um arquivo chamado `linear.jl`.
+1. Salve o código em um arquivo chamado `grasp.jl`.
 2. Para rodar o programa, use o seguinte comando no terminal:
 
    ```bash
-   julia linear.jl <arquivo_entrada> <seed> <time_limit>
+   julia grasp.jl <arquivo_entrada> <seed> <time_limit> < max_iterations>
    ```
 
    - `<arquivo_entrada>`: Caminho para o arquivo contendo os dados do problema.
    - `<seed>`: Semente para o gerador de números aleatórios (um número inteiro).
    - `<time_limit>`: Limite de tempo em segundos para resolver o problema (um número de ponto flutuante).
+   - `<max_iterations>`: numero maximo de iterações que o programam pode fazer  (um número inteiro).
 
 **Exemplo de execução:**
 
 ```bash
-julia linear.jl input.txt 42 60.0
+julia grasp.jl input.txt 42 60.0 1000
 ```
 
 #### Saída
@@ -60,9 +67,9 @@ O programa exibirá informações sobre o problema e a solução encontrada:
 **Exemplo de saída:**
 
 ```
-Status: OPTIMAL
-Melhor valor encontrado: 25.00
-Bound: 25.00
-Solução: [3, 4, 3]
-Tempo decorrido: 12.34
+Status: max_iterations
+Valor: 25
+Tempo total: 13.27
+Número de iterações: 1000
+Melhor solução final: [3, 4, 3]
 ```

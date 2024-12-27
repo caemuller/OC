@@ -1,5 +1,13 @@
 ## Como rodar o programa em Julia:
 
+#### Testes automatizados:
+
+* Desenvolvemos um script que roda todas as instãncias e salva os resultados em um CSV, visite[ /test/how_run_tests.md](../tests/how_run_tests.md) para mais informações.
+
+---
+
+
+
 #### Pré-requisitos
 
 1. **Julia**: Certifique-se de ter o Julia instalado. Você pode baixá-lo em [https://julialang.org/](https://julialang.org/).
@@ -10,9 +18,6 @@
    Pkg.add("JuMP")
    Pkg.add("HiGHS")
    Pkg.add("Printf")
-   Pkg.add("MathOptInterface")
-   Pkg.add("CSV")
-   Pkg.add("DataFrames")
    ```
 
 #### Formato do Arquivo de Entrada
@@ -37,18 +42,17 @@ O programa espera um arquivo de entrada com o seguinte formato:
 2. Para rodar o programa, use o seguinte comando no terminal:
 
    ```bash
-   julia linear.jl <file> <seed> <time_limit> <optional: -csv>"
+   julia linear.jl <file> <seed> <time_limit>
    ```
 
    - `<arquivo_entrada>`: Caminho para o arquivo contendo os dados do problema.
    - `<seed>`: Semente para o gerador de números aleatórios (um número inteiro).
    - `<time_limit>`: Limite de tempo em segundos para resolver o problema (um número de ponto flutuante).
-   - `<Opcional: -csv>`: Salva os resultados em um arquivo CSV.
 
 **Exemplo de execução:**
 
 ```bash
-julia linear.jl input.txt 42 60.0 -csv
+julia linear.jl input.txt 42 60.0
 ```
 
 #### Saída
