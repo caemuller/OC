@@ -1,6 +1,9 @@
 using JuMP
 using HiGHS
 using Printf
+using MathOptInterface
+using CSV
+using DataFrames
 
 function read_instance(filename::String)
     # Formato atual:
@@ -60,12 +63,15 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
     optimize!(model)
 
     status = termination_status(model)
-    solve_status = primal_status(model)
+
+    # Contar o número de iterações
+    num_iterations = MOI.get(model, MOI.SimplexIterations())
+    solve_time = MOI.get(model, MOI.SolveTimeSec())
 
     # Verificar se alguma solução viável foi encontrada
     if has_values(model)
         best_value = objective_value(model)
-        bound = objective_bound(model)
+        bound = MOI.get(model, MOI.ObjectiveBound())
 
         # Construção da solução x_i a partir de y:
         x = zeros(Int, n)
@@ -81,26 +87,53 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64)
         @printf "Melhor valor encontrado: %.2f\n" best_value
         @printf "Bound: %.2f\n" bound
         @printf "Solução: %s\n" string(x)
-        @printf "Tempo decorrido: %.2f\n" solve_time(model)
+        @printf "Tempo decorrido: %.2f\n" solve_time
+        @printf "Número de iterações: %d\n" num_iterations
+
+        # Salvar resultados em um arquivo CSV
+        results = DataFrame(
+            Status = string(status),
+            Melhor_valor_encontrado = replace(string(round(best_value, digits = 2)), "." => ""),
+            Bound = replace(string(bound), "." => ""),
+            Solução = string(x),
+            Tempo_decorrido = round(solve_time, digits=2),
+            Número_de_iterações = num_iterations
+        )
+        CSV.write(filename * ".csv", results)
 
         return x, best_value
     else
         # Nenhuma solução viável encontrada (pode ter estourado o tempo)
         @printf "Status: %s\n" string(status)
         @printf "Nenhuma solução viável encontrada dentro do limite de tempo.\n"
-        @printf "Tempo decorrido: %.2f\n" solve_time(model)
+        @printf "Tempo decorrido: %.2f\n" solve_time
+        @printf "Número de iterações: %d\n" num_iterations
+
+        # Salvar resultados em um arquivo CSV
+        results = DataFrame(
+            Status = string(status),
+            Melhor_valor_encontrado = -Inf,
+            Bound = -Inf,
+            Solução = "Nenhuma",
+            Tempo_decorrido = solve_time,
+            Número_de_iterações = num_iterations
+        )
+        CSV.write(filename * ".csv", results)
+
         return nothing, -Inf
     end
 end
 
-# Programa principal
-if length(ARGS) < 3
-    println("Uso: julia linear.jl <arquivo_entrada> <seed> <time_limit>")
-    exit(1)
+function main()
+    if length(ARGS) < 3
+        println("Uso: julia Linear.jl <file> <seed> <time_limit>")
+        return
+    end
+
+    filename = ARGS[1]
+    seed = parse(Int, ARGS[2])
+    time_limit = parse(Float64, ARGS[3])
+
+    solve_integer_problem(filename, seed, time_limit)
 end
 
-filename = ARGS[1]
-seed = parse(Int, ARGS[2])
-time_limit = parse(Float64, ARGS[3])
-
-solve_integer_problem(filename, seed, time_limit)
