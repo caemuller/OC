@@ -1,0 +1,11 @@
+filename ,type   ,status     ,best_value ,time  ,time_limit ,seed ,max_iterations ,num_iterations ,best_solution ,bound
+01.txt   ,linear ,TIME_LIMIT ,1032849e6  , 5.15 ,       5.0 ,   6 ,             0 ,         15281 ,[16           ,195          ,137 ,116 ,169 ,140 ,124 ,146 ,181 ,128 ,108 ,171 ,115 ,140 ,133 ,13 ,179 ,163 ,126 ,9 ,137 ,195 ,191 ,203 ,160 ,101 ,107 ,191 ,123 ,13 ,162 ,133 ,104 ,196 ,174 ,125 ,139 ,129 ,113 ,189 ,160 ,158 ,140 ,164 ,119 ,136 ,113 ,133 ,108 ,155 ,121 ,107 ,164 ,103 ,136 ,24 ,105 ,120 ,136 ,2 ,207 ,7 ,201 ,104 ,174 ,132 ,171 ,157 ,122 ,117 ,36 ,183 ,137 ,5 ,144 ,187 ,156 ,154 ,165 ,150 ,165 ,182 ,192 ,40 ,176 ,208 ,151 ,136 ,161 ,150 ,125 ,122 ,155 ,185 ,111 ,150 ,131 ,196 ,121 ,119] ,1.039598e6
+02.txt   ,linear ,TIME_LIMIT ,-Inf       , 5.09 ,       5.0 ,   6 ,             0 ,         42596 ,nothing       ,1.7864561e7
+03.txt   ,linear ,TIME_LIMIT ,-Inf       ,30.97 ,       5.0 ,   6 ,             0 ,             1 ,nothing       ,1.54371865e8
+04.txt   ,linear ,TIME_LIMIT ,-Inf       , 5.27 ,       5.0 ,   6 ,             0 ,         37131 ,nothing       ,3.7533861e7
+05.txt   ,linear ,TIME_LIMIT ,-Inf       , 5.26 ,       5.0 ,   6 ,             0 ,         50343 ,nothing       ,9.32344e6
+06.txt   ,linear ,TIME_LIMIT ,-Inf       , 5.52 ,       5.0 ,   6 ,             0 ,          6330 ,nothing       ,3.7449516e7
+07.txt   ,linear ,TIME_LIMIT ,-Inf       , 7.37 ,       5.0 ,   6 ,             0 ,             1 ,nothing       ,2.92598474e8
+08.txt   ,linear ,TIME_LIMIT ,-Inf       , 5.22 ,       5.0 ,   6 ,             0 ,          5235 ,nothing       ,7.2775183e7
+09.txt   ,linear ,TIME_LIMIT ,-Inf       , 6.68 ,       5.0 ,   6 ,             0 ,             1 ,nothing       ,1.8972982e7
+10.txt   ,linear ,TIME_LIMIT ,-Inf       ,24.78 ,       5.0 ,   6 ,             0 ,             1 ,nothing       ,7.4454269e7
