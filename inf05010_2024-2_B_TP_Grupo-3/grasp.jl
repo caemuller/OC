@@ -40,7 +40,7 @@ function feasible(x, L, U, m)
     if sum(x) != m
         return false
     end
-    for i in 1:length(x)
+    for i in eachindex(x)
         if x[i] < L[i] || x[i] > U[i]
             return false
         end
@@ -75,7 +75,7 @@ end
 
 ########## Busca Local ##########
 
-function local_search(x, L, U, m; max_no_improve=100)
+function local_search(x, L, U, max_no_improve)
     best_x = copy(x)
     best_val = solution_value(x)
     no_improve = 0
@@ -86,8 +86,8 @@ function local_search(x, L, U, m; max_no_improve=100)
     improved = true
     while improved && no_improve < max_no_improve
         improved = false
-        for i in 1:length(x)
-            for j in 1:length(x)
+        for i in eachindex(x)
+            for j in eachindex(x)
                 if i != j
                     # Tenta mover uma bola de i para j
                     if x[i] > L[i] && x[j] < U[j]
@@ -119,7 +119,7 @@ end
 
 ########## GRASP Completo ##########
 
-function grasp(n, m, L, U; max_iterations=1000, alpha=0.1, time_limit=Inf, seed=1234)
+function grasp(n, m, L, U; max_iterations, alpha=0.1, time_limit, seed)
     Random.seed!(seed)
     start_time = time()
     best_x = nothing
@@ -141,7 +141,7 @@ function grasp(n, m, L, U; max_iterations=1000, alpha=0.1, time_limit=Inf, seed=
         end
 
         # Busca local
-        x_local = local_search(x, L, U, m; max_no_improve=50)
+        x_local = local_search(x, L, U, max_no_improve)
         val = solution_value(x_local)
 
         # Se for melhor que o melhor conhecido, imprimir e atualizar
@@ -151,6 +151,7 @@ function grasp(n, m, L, U; max_iterations=1000, alpha=0.1, time_limit=Inf, seed=
             elapsed = time() - start_time
             @printf("%.2f %d %s\n", elapsed, best_val, string(best_x))
         end
+        num_iterations = iter
     end
 
     if terminated_by_time
@@ -159,7 +160,7 @@ function grasp(n, m, L, U; max_iterations=1000, alpha=0.1, time_limit=Inf, seed=
         println("Encerrado por número máximo de iterações.")
     end
 
-    return best_x, best_val, time() - start_time
+    return best_x, best_val, time() - start_time , num_iterations
 end
 
 ########## Programa Principal ##########
@@ -176,7 +177,7 @@ time_lim = parse(Float64, ARGS[4])
 
 n, m, L, U = read_instance(filename)
 
-best_solution, best_val, total_time = grasp(n, m, L, U; max_iterations=max_iters, alpha=0.1, time_limit=time_lim, seed=seed)
+best_solution, best_val, total_time, num_iter = grasp(n, m, L, U; max_iterations=max_iters, alpha=0.1, time_limit=time_lim, seed=seed)
 
 if best_solution === nothing
     println("Não encontrou solução viável.")
@@ -184,4 +185,5 @@ else
     @printf("Melhor solução final: %s\n", string(best_solution))
     @printf("Valor: %d\n", best_val)
     @printf("Tempo total: %.2f s\n", total_time)
+    @printf("Número de iterações: %d\n", num_iter)
 end

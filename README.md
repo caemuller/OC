@@ -4,7 +4,7 @@
 
 - **Caetano Müller - 00333371**
 - **Marcos L. K. Reckers - 00315653**
-- **Miguel**
+- **Miguel Lemmertz Schwarzbold - 00342191**
 
 ## Formulação Inteira:
 
@@ -107,11 +107,11 @@ y_{i,k} \le y_{i,k-1}  \quad  \begin{cases}
 $$
 
 $$
-l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \forall i \in [n] 
+l_i \le \sum_{k=1}^{u_i} y_{i,k} \le u_i  \quad  \forall i \in [n]
 $$
 
 $$
-\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m 
+\sum_{i=1}^{n} \sum_{k=1}^{u_i} y_{i,k} = m
 $$
 
 $$
@@ -121,12 +121,56 @@ y_{i,k} \in \{0,1\}  \quad  \begin{cases}
 \end{cases}
 $$
 
+### Testes:
+
+* 01.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 02.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 03.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 04.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 05.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 06.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 07.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 08.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 09.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+* 10.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |                  |       |                        |
+
 ## Como rodar o programa em Julia:
 
 #### Pré-requisitos
 
 1. **Julia**: Certifique-se de ter o Julia instalado. Você pode baixá-lo em [https://julialang.org/](https://julialang.org/).
 2. **Dependências**: Instale os pacotes necessários executando os comandos abaixo no REPL do Julia:
+
    ```julia
    using Pkg
    Pkg.add("JuMP")
@@ -137,9 +181,9 @@ $$
 
 O programa espera um arquivo de entrada com o seguinte formato:
 
-1. Primeira linha: Número de variáveis \(n\).
-2. Segunda linha: Soma total de bolas \(m\).
-3. Próximas \(n\) linhas: Dois valores \(l_i\) (limite inferior) e \(u_i\) (limite superior) separados por espaço.
+1. Primeira linha: Número de variáveis \($n$\).
+2. Segunda linha: Soma total de bolas \($m$).
+3. Próximas \($n$\) linhas: Dois valores \($l_i$\) (limite inferior) e \($u_i$\) (limite superior) separados por espaço.
 
 **Exemplo de arquivo de entrada (`input.txt`):**
 

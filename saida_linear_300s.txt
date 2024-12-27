@@ -1,0 +1,444 @@
+Uso: julia Linear.jl <file> <seed> <time_limit>
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 2e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [1e+00, 1e+04]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   15219 rows
+   15118 cols (15118 binary, 0 integer, 0 implied int., 0 continuous)
+   75390 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   1194317         -inf                 inf        0      0      0         0     0.0s
+         0       0         0   0.00%   1090152         -inf                 inf        0      0      2     13087     1.3s
+ R       0       0         0   0.00%   1035051         1033482            0.15%      229      1     14     15292     6.5s
+         0       0         0   0.00%   1035016.328901  1033482            0.15%      655      8    284     15317    11.5s
+ L       0       0         0   0.00%   1035013.818597  1034999            0.00%     1068     10    284     15322    15.8s
+
+Solving report
+  Status            Optimal
+  Primal bound      1034999
+  Dual bound        1035012
+  Gap               0.00126% (tolerance: 0.01%)
+  Solution status   feasible
+                    1034999 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            15.83 (total)
+                    0.01 (presolve)
+                    0.00 (postsolve)
+  Nodes             1
+  LP iterations     15824 (total)
+                    0 (strong br.)
+                    2235 (separation)
+                    500 (heuristics)
+Status: OPTIMAL
+Melhor valor encontrado: 1034999.00
+Bound: 1035012.00
+Solução: [193, 195, 137, 116, 170, 55, 125, 146, 181, 128, 108, 171, 115, 55, 133, 13, 179, 163, 126, 194, 137, 195, 191, 203, 160, 101, 107, 191, 124, 13, 162, 133, 104, 196, 174, 125, 139, 129, 113, 189, 160, 158, 140, 164, 119, 136, 113, 133, 91, 155, 121, 108, 164, 103, 136, 24, 105, 120, 136, 2, 207, 7, 201, 95, 174, 132, 171, 157, 122, 117, 36, 12, 137, 5, 144, 187, 156, 154, 165, 150, 165, 182, 192, 40, 176, 208, 151, 136, 161, 150, 125, 122, 155, 186, 111, 150, 131, 196, 121, 119]
+Tempo decorrido: 15.87
+Número de iterações: 15824
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 8e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [5e+00, 4e+04]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   58760 rows
+   58659 cols (58659 binary, 0 integer, 0 implied int., 0 continuous)
+   293095 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   17864561        -inf                 inf        0      0      0         0     0.2s
+         0       0         0   0.00%   13649905        -inf                 inf        0      0      2     56613    26.3s
+         0       0         0   0.00%   12102071        -inf                 inf       35      0      6     58823    48.4s
+ R       0       0         0   0.00%   11984837.5      11982366           0.02%      177      1      6     58881    67.0s
+         0       0         0   0.00%   11984821        11982366           0.02%      378      4   1170     58884    73.4s
+         0       0         0   0.00%   11984811.03069  11982366           0.02%      933      6   1170     58889    82.7s
+         0       0         0   0.00%   11984811.03069  11982366           0.02%     1013      7   1170     58890    88.5s
+ L       0       0         0   0.00%   11984811.03069  11984785           0.00%     1013      7   1170     58890    94.8s
+
+Solving report
+  Status            Optimal
+  Primal bound      11984785
+  Dual bound        11984804
+  Gap               0.000159% (tolerance: 0.01%)
+  Solution status   feasible
+                    11984785 (objective)
+                    0 (bound viol.)
+                    1.26565424807e-13 (int. viol.)
+                    0 (row viol.)
+  Timing            94.93 (total)
+                    0.03 (presolve)
+                    0.00 (postsolve)
+  Nodes             1
+  LP iterations     59662 (total)
+                    0 (strong br.)
+                    2277 (separation)
+                    770 (heuristics)
+Status: OPTIMAL
+Melhor valor encontrado: 11984785.00
+Bound: 11984804.00
+Solução: [719, 599, 334, 495, 421, 656, 8, 737, 708, 666, 349, 816, 247, 24, 198, 417, 606, 506, 134, 102, 67, 571, 394, 669, 557, 88, 690, 75, 752, 181, 267, 279, 269, 427, 465, 564, 422, 670, 390, 136, 675, 430, 650, 420, 780, 563, 558, 78, 678, 654, 269, 769, 746, 479, 456, 579, 532, 459, 459, 273, 194, 629, 674, 90, 449, 818, 632, 90, 208, 495, 315, 727, 674, 120, 97, 526, 418, 297, 706, 399, 714, 513, 415, 188, 250, 346, 462, 172, 630, 784, 498, 501, 554, 109, 485, 500, 318, 142, 255, 60]
+Tempo decorrido: 95.01
+Número de iterações: 59662
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 2e+03]
+  Bound  [1e+00, 1e+00]
+  RHS    [2e+00, 1e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   244007 rows
+   243806 cols (243806 binary, 0 integer, 0 implied int., 0 continuous)
+   1218630 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   154371865       -inf                 inf        0      0      0         0     1.0s
+         0       0         0   0.00%   66283519.5      -inf                 inf        0      0      2    243874   102.0s
+ R       0       0         0   0.00%   66283519.5      45800019          44.72%       47      0      2    244373   326.4s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      45800019
+  Dual bound        66283519
+  Gap               44.72% (tolerance: 0.01%)
+  Solution status   feasible
+                    45800019 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            326.49 (total)
+                    0.11 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     244373 (total)
+                    0 (strong br.)
+                    499 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Melhor valor encontrado: 45800019.00
+Bound: 66283519.00
+Solução: [97, 106, 14, 645, 600, 557, 1399, 35, 403, 396, 782, 517, 608, 438, 404, 295, 563, 520, 760, 425, 779, 530, 720, 627, 261, 203, 571, 670, 1646, 1409, 346, 426, 1307, 1485, 173, 615, 61, 1207, 214, 726, 1522, 412, 78, 434, 391, 714, 612, 643, 1416, 248, 770, 169, 253, 1508, 577, 1199, 652, 1233, 5, 105, 567, 694, 81, 200, 78, 645, 775, 13, 72, 646, 623, 179, 555, 635, 785, 1408, 239, 228, 122, 649, 735, 404, 194, 763, 124, 718, 352, 365, 562, 350, 1644, 80, 402, 577, 607, 777, 5, 103, 754, 486, 217, 433, 471, 529, 600, 289, 592, 215, 30, 577, 47, 1667, 796, 678, 618, 14, 359, 157, 143, 1162, 374, 1276, 209, 177, 421, 747, 591, 62, 583, 667, 460, 1318, 443, 615, 330, 312, 625, 678, 555, 1361, 39, 1456, 444, 389, 55, 631, 673, 1530, 537, 126, 610, 348, 543, 517, 581, 782, 1544, 405, 235, 426, 463, 772, 227, 1270, 482, 1466, 446, 89, 467, 394, 28, 26, 614, 313, 348, 1452, 297, 499, 433, 795, 98, 501, 99, 591, 530, 344, 30, 94, 586, 146, 48, 1551, 550, 1465, 521, 289, 391, 260, 69, 79]
+Tempo decorrido: 326.66
+Número de iterações: 244373
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 8e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [4e+00, 1e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   120373 rows
+   120172 cols (120172 binary, 0 integer, 0 implied int., 0 continuous)
+   600460 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   37533861        -inf                 inf        0      0      0         0     0.4s
+         0       0         0   0.00%   35424671        -inf                 inf        0      0      2    102090    92.4s
+         0       0         0   0.00%   34949318.5      -inf                 inf       29      0      4    111781   184.6s
+         0       0         0   0.00%   34587564        -inf                 inf       47      0      6    117300   256.8s
+         0       0         0   0.00%   34394010        -inf                 inf       52      0      8    119470   311.0s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      -inf
+  Dual bound        34394010
+  Gap               0% (tolerance: 0.01%)
+  Solution status   -
+  Timing            310.96 (total)
+                    0.06 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     119470 (total)
+                    0 (strong br.)
+                    17380 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Nenhuma solução viável encontrada dentro do limite de tempo.
+Tempo decorrido: 311.03
+Número de iterações: 119470
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 2e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [1e+00, 1e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   120203 rows
+   119402 cols (119402 binary, 0 integer, 0 implied int., 0 continuous)
+   595410 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   9323440         -inf                 inf        0      0      0         0     0.5s
+         0       0         0   0.00%   8601803         -inf                 inf        0      0      2    103671    36.0s
+         0       0         0   0.00%   8392291         -inf                 inf      379      0      4    115326   111.9s
+         0       0         0   0.00%   8276249         -inf                 inf      521      0      6    119387   165.6s
+         0       0         0   0.00%   8221115         -inf                 inf      548      1     10    120334   211.2s
+         0       0         0   0.00%   8203002.5       -inf                 inf      555      1     12    120591   257.9s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      -inf
+  Dual bound        8202061
+  Gap               0% (tolerance: 0.01%)
+  Solution status   -
+  Timing            304.39 (total)
+                    0.07 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     120635 (total)
+                    0 (strong br.)
+                    16964 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Nenhuma solução viável encontrada dentro do limite de tempo.
+Tempo decorrido: 304.45
+Número de iterações: 120635
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 4e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [1e+00, 2e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   240654 rows
+   239853 cols (239853 binary, 0 integer, 0 implied int., 0 continuous)
+   1197665 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   37449516        -inf                 inf        0      0      0         0     1.1s
+         0       0         0   0.00%   32217206        -inf                 inf        0      0      2    219136   265.0s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      -inf
+  Dual bound        32217206
+  Gap               0% (tolerance: 0.01%)
+  Solution status   -
+  Timing            300.28 (total)
+                    0.11 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     231212 (total)
+                    0 (strong br.)
+                    12076 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Nenhuma solução viável encontrada dentro do limite de tempo.
+Tempo decorrido: 300.41
+Número de iterações: 231212
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 3e+03]
+  Bound  [1e+00, 1e+00]
+  RHS    [5e+01, 2e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   237659 rows
+   237558 cols (237558 binary, 0 integer, 0 implied int., 0 continuous)
+   1187590 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   292598474       -inf                 inf        0      0      0         0     1.3s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      -inf
+  Dual bound        292598474
+  Gap               0% (tolerance: 0.01%)
+  Solution status   -
+  Timing            300.35 (total)
+                    0.15 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     199345 (total)
+                    0 (strong br.)
+                    0 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Nenhuma solução viável encontrada dentro do limite de tempo.
+Tempo decorrido: 300.42
+Número de iterações: 199345
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 2e+03]
+  Bound  [1e+00, 1e+00]
+  RHS    [2e+00, 8e+04]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   118170 rows
+   118069 cols (118069 binary, 0 integer, 0 implied int., 0 continuous)
+   590145 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   72775183        -inf                 inf        0      0      0         0     0.5s
+         0       0         0   0.00%   50815820.5      -inf                 inf        0      0      2    113489    93.5s
+         0       0         0   0.00%   42848474.5      -inf                 inf       18      0      6    118163   178.6s
+ R       0       0         0   0.00%   42668333        42658407           0.02%       18      0      6    118215   222.3s
+         0       0         0   0.00%   42668333        42658407           0.02%       53      1      6    118216   246.2s
+         0       0         0   0.00%   42668333        42658407           0.02%       55      2      6    118220   281.5s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      42658407
+  Dual bound        42668333
+  Gap               0.0233% (tolerance: 0.01%)
+  Solution status   feasible
+                    42658407 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            306.91 (total)
+                    0.06 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     118220 (total)
+                    0 (strong br.)
+                    4731 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Melhor valor encontrado: 42658407.00
+Bound: 42668333.00
+Solução: [263, 16, 299, 767, 1292, 1170, 39, 496, 1602, 785, 1189, 570, 1257, 683, 1485, 1509, 1652, 1087, 1557, 29, 1258, 1268, 628, 1373, 637, 755, 1525, 793, 649, 494, 1147, 513, 985, 1617, 498, 244, 227, 650, 245, 583, 938, 787, 761, 569, 361, 595, 1128, 797, 1453, 45, 799, 262, 160, 652, 1671, 538, 746, 1186, 461, 221, 365, 761, 1211, 665, 923, 648, 468, 648, 431, 666, 273, 550, 1469, 1219, 1320, 704, 785, 1018, 1196, 1569, 404, 521, 513, 1346, 341, 1245, 1579, 47, 1546, 450, 670, 379, 740, 1558, 1634, 635, 113, 403, 458, 618]
+Tempo decorrido: 307.02
+Número de iterações: 118220
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 4e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [1e+00, 7e+04]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   121166 rows
+   120765 cols (120765 binary, 0 integer, 0 implied int., 0 continuous)
+   603025 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   18972982        -inf                 inf        0      0      0         0     0.4s
+         0       0         0   0.00%   10773894        -inf                 inf        0      0      2    119159    25.2s
+         0       0         0   0.00%   8476553.5       -inf                 inf      111      0      4    121593   106.6s
+ R       0       0         0   0.00%   8461955.5       8458142            0.05%      115      0      4    121628   168.2s
+         0       0         0   0.00%   8461955.5       8458142            0.05%      115      0    198    121628   184.3s
+ L       0       0         0   0.00%   8461955.5       8461953            0.00%      115      0    198    121628   290.3s
+
+Solving report
+  Status            Optimal
+  Primal bound      8461953
+  Dual bound        8461955
+  Gap               2.4e-05% (tolerance: 0.01%)
+  Solution status   feasible
+                    8461953 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            290.58 (total)
+                    0.05 (presolve)
+                    0.00 (postsolve)
+  Nodes             1
+  LP iterations     124426 (total)
+                    0 (strong br.)
+                    2469 (separation)
+                    2798 (heuristics)
+Status: OPTIMAL
+Melhor valor encontrado: 8461953.00
+Bound: 8461955.00
+Solução: [38, 128, 2, 167, 367, 353, 98, 59, 183, 116, 97, 107, 179, 152, 326, 138, 172, 102, 9, 283, 50, 198, 97, 172, 303, 386, 340, 28, 181, 185, 182, 100, 104, 18, 6, 12, 172, 176, 173, 115, 269, 125, 361, 403, 33, 121, 109, 121, 135, 126, 156, 395, 284, 51, 16, 309, 31, 127, 185, 269, 267, 57, 277, 167, 21, 148, 128, 59, 94, 147, 110, 196, 139, 242, 39, 22, 386, 62, 72, 118, 19, 97, 191, 24, 179, 28, 179, 97, 129, 92, 8, 404, 154, 90, 257, 152, 254, 136, 186, 347, 160, 198, 83, 196, 405, 180, 344, 40, 35, 167, 389, 300, 268, 128, 160, 69, 327, 198, 154, 134, 356, 13, 97, 348, 194, 310, 180, 142, 9, 88, 51, 84, 167, 282, 191, 164, 118, 408, 363, 115, 34, 403, 277, 130, 415, 81, 141, 184, 158, 367, 88, 70, 170, 55, 197, 112, 125, 46, 184, 101, 162, 127, 187, 114, 304, 185, 94, 384, 167, 52, 289, 69, 53, 27, 98, 317, 160, 112, 155, 166, 138, 145, 95, 157, 130, 2, 161, 385, 165, 375, 139, 62, 330, 115, 96, 81, 12, 318, 15, 323, 72, 147, 55, 263, 113, 105, 96, 163, 401, 77, 374, 412, 83, 180, 363, 315, 21, 79, 163, 13, 309, 52, 132, 44, 108, 372, 291, 190, 178, 183, 181, 252, 5, 193, 70, 142, 90, 416, 386, 176, 20, 29, 29, 85, 367, 138, 53, 16, 141, 47, 152, 34, 68, 116, 1, 413, 354, 107, 179, 399, 135, 47, 319, 72, 172, 52, 1, 108, 176, 316, 76, 57, 196, 62, 10, 326, 153, 315, 96, 140, 128, 64, 72, 45, 345, 163, 300, 261, 178, 42, 339, 178, 270, 384, 379, 394, 186, 15, 194, 174, 280, 98, 261, 279, 111, 130, 83, 80, 362, 77, 114, 171, 296, 386, 133, 402, 178, 380, 369, 162, 381, 180, 414, 86, 23, 70, 304, 181, 173, 167, 153, 342, 94, 183, 58, 244, 59, 379, 84, 370, 341, 71, 71, 15, 7, 43, 144, 194, 142, 53, 53, 377, 185, 58, 165, 293, 8, 142, 158, 141, 319, 42, 58, 111, 408, 322, 264, 25, 148, 63, 383, 69, 23, 98, 252, 289, 148, 414, 14, 166, 259, 399, 115, 200, 112, 183, 123, 71, 21, 4, 401, 140, 20, 254, 68, 189, 53, 168, 383, 93]
+Tempo decorrido: 290.74
+Número de iterações: 124426
+Running HiGHS 1.7.2 (git hash: 5ce7a2753): Copyright (c) 2024 HiGHS under MIT licence terms
+Coefficient ranges:
+  Matrix [1e+00, 1e+00]
+  Cost   [1e+00, 8e+02]
+  Bound  [1e+00, 1e+00]
+  RHS    [5e+00, 2e+05]
+
+Presolve is switched off
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   239980 rows
+   239579 cols (239579 binary, 0 integer, 0 implied int., 0 continuous)
+   1197095 nonzeros
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   74454269        -inf                 inf        0      0      0         0     1.2s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      -inf
+  Dual bound        74454269
+  Gap               0% (tolerance: 0.01%)
+  Solution status   -
+  Timing            300.36 (total)
+                    0.13 (presolve)
+                    0.00 (postsolve)
+  Nodes             0
+  LP iterations     223454 (total)
+                    0 (strong br.)
+                    0 (separation)
+                    0 (heuristics)
+Status: TIME_LIMIT
+Nenhuma solução viável encontrada dentro do limite de tempo.
+Tempo decorrido: 300.44
+Número de iterações: 223454
