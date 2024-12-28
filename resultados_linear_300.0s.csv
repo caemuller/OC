@@ -1,0 +1,11 @@
+filename,type,status,best_value,time,time_limit,seed,max_iterations,num_iterations,best_solution,bound
+01.txt,linear,OPTIMAL,1.034999e6,15.18,300.0,6,0,15824,,1.0350119999999998e6
+02.txt,linear,OPTIMAL,1.1984785e7,93.05,300.0,6,0,59662,,1.1984804e7
+03.txt,linear,TIME_LIMIT,4.5800019e7,327.9,300.0,6,0,244373,,6.6283519e7
+04.txt,linear,TIME_LIMIT,-Inf,320.2,300.0,6,0,119829,nothing,3.439401e7
+05.txt,linear,TIME_LIMIT,7.745998e6,321.05,300.0,6,0,120643,,8.202061e6
+06.txt,linear,TIME_LIMIT,-Inf,371.5,300.0,6,0,233451,nothing,3.2217206e7
+07.txt,linear,TIME_LIMIT,-Inf,300.33,300.0,6,0,204226,nothing,2.92598474e8
+08.txt,linear,TIME_LIMIT,4.2658407e7,300.2,300.0,6,0,118235,,4.266826e7
+09.txt,linear,OPTIMAL,8.461953e6,244.57,300.0,6,0,124426,,8.461955e6
+10.txt,linear,TIME_LIMIT,-Inf,300.26,300.0,6,0,237181,nothing,5.5563662e7
