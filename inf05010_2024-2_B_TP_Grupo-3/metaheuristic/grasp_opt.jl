@@ -245,24 +245,24 @@ function GRASP(filename, max_iterations, time_limit, seed, n_candidates)
         # Gera solucao gulosa
         solution = randomized_greedy_solution(n, m, L, U, n_candidates)
 
-        print_solution(solution, n, m, L, U)
+        #print_solution(solution, n, m, L, U)
 
-        println("Testando feasible outside")
-        println(sum(solution))
-        println(feasible(solution, m, L, U))
-        if false #!feasible(solution, m, L, U)
-            println("solucao greedy not feasible")
-            continue
-        end
+        #println("Testando feasible outside")
+        #println(sum(solution))
+        #println(feasible(solution, m, L, U))
+        #if false #!feasible(solution, m, L, U)
+        #    println("solucao greedy not feasible")
+        #    continue
+        #end
 
         # Optimiza com busca local
         val = local_search!(solution, n, m, L, U, 500)
 
         # Verifica se solução é valida
-        if false # !feasible(solution, m, L, U)
-            println("GRASP atingiu solução inválida: ignorando solução")
-            continue
-        end
+        #if false # !feasible(solution, m, L, U)
+        #    println("GRASP atingiu solução inválida: ignorando solução")
+        #    continue
+        #end
 
         # Verifica se é a melhor solucao
         if val > best_val
@@ -318,35 +318,4 @@ function main()
     GRASP(filename, max_iterations, time_limit, seed, n_candidates)
 
 end
-
-#println("Meta heurística GRASP para o problema Bins and Balls")
-
-#if length(ARGS) < 5
-#    println("Uso: julia grasp_opt.jl <arquivo_instancia> <seed> <max_iterations> <time_limit(segundos)> <n_candidates>")
-##    exit(1)
-#end
-#
-#filename = ARGS[1]
-#seed = parse(Int, ARGS[2])
-#max_iters = parse(Int, ARGS[3])
-#time_lim = parse(Float64, ARGS[4])
-#n_candidates = parse(Int, ARGS[5])
-#
-#n, m, L, U = read_instance(filename)
-#
-#print_problem(n, m, L, U)
-#best_solution, best_val, total_time = GRASP(n, m, L, U; max_iterations=max_iters, alpha=0.1, time_limit=time_lim, seed=seed, n_candidates=n_candidates)
-#
-##print_solution(best_solution, m, L, U)
-#
-#if best_solution === nothing
-#    println("Não encontrou solução viável.")
-#else
-#    #@printf("Melhor solução final: %s\n", string(best_solution))
-#    println("Melhor solução final:")
-#    print_solution(best_solution, n, m, L, U)
-#    @printf("Valor: %d\n", best_val)
-#    @printf("Tempo total: %.2f s\n", total_time)
-#end
-
 
