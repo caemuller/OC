@@ -171,8 +171,8 @@ $$
 O algoritmo GRASP pode ser definido em duas etapas:
 
 * Geração da solução gulosa
-* Busca loca
-  Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução.
+* Busca local
+Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução.
 
 Nossa implementação em Julia do algorítmo utilisa essas etapas para encontrar soluções próximas à ótima no problema Bins and Balls com limites de tempo restritos.
 
