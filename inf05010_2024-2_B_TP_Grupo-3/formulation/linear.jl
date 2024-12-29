@@ -1,9 +1,6 @@
 using JuMP
 using HiGHS
 using Printf
-using MathOptInterface
-using CSV
-using DataFrames
 
 function read_instance(filename::String)
     # Formato atual:
@@ -122,8 +119,8 @@ function solve_integer_problem(filename::String, seed::Int, time_limit::Float64,
 end
 
 function main()
-    if length(ARGS) < 4
-        println("Uso: julia Linear.jl <file> <seed> <time_limit> <optional: -csv>")
+    if length(ARGS) < 3
+        println("Uso: julia Linear.jl <file> <seed> <time_limit>")
         return
     end
 
@@ -134,4 +131,4 @@ function main()
     solve_integer_problem(filename, seed, time_limit)
 end
 
-main()
+#main()

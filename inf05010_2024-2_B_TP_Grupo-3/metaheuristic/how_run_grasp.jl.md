@@ -40,18 +40,19 @@ O programa espera um arquivo de entrada com o seguinte formato:
 2. Para rodar o programa, use o seguinte comando no terminal:
 
    ```bash
-   julia grasp.jl <arquivo_entrada> <seed> <time_limit> < max_iterations>
+   julia grasp.jl <arquivo_instancia> <seed> <time_limit(segundos)> <max_iterations> 
    ```
 
    - `<arquivo_entrada>`: Caminho para o arquivo contendo os dados do problema.
    - `<seed>`: Semente para o gerador de números aleatórios (um número inteiro).
    - `<time_limit>`: Limite de tempo em segundos para resolver o problema (um número de ponto flutuante).
    - `<max_iterations>`: numero maximo de iterações que o programam pode fazer  (um número inteiro).
+   - `OBS`: As instancias do problema estão na pasta instances, para chama-las basta usar `../instances/<numero.txt>`
 
 **Exemplo de execução:**
 
 ```bash
-julia grasp.jl input.txt 42 60.0 1000
+julia grasp.jl ../instances/input.txt 42 60.0 1000
 ```
 
 #### Saída

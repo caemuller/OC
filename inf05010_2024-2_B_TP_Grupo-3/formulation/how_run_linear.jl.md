@@ -6,8 +6,6 @@
 
 ---
 
-
-
 #### Pré-requisitos
 
 1. **Julia**: Certifique-se de ter o Julia instalado. Você pode baixá-lo em [https://julialang.org/](https://julialang.org/).
@@ -48,11 +46,12 @@ O programa espera um arquivo de entrada com o seguinte formato:
    - `<arquivo_entrada>`: Caminho para o arquivo contendo os dados do problema.
    - `<seed>`: Semente para o gerador de números aleatórios (um número inteiro).
    - `<time_limit>`: Limite de tempo em segundos para resolver o problema (um número de ponto flutuante).
+   - `OBS`: As instancias do problema estão na pasta instances, para chama-las basta usar `../instances/<numero.txt>`
 
 **Exemplo de execução:**
 
 ```bash
-julia linear.jl input.txt 42 60.0
+julia linear.jl ../instances/11.txt 42 60.0
 ```
 
 #### Saída

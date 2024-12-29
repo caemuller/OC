@@ -60,20 +60,31 @@ end
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
 ### Parâmetros de teste ###
-#instances_path = "C:/Users/marco/Documents/dev/otimizacao/inf05010_2024-2_B_TP_Grupo-3/instances/"
 instances_path = "../instances/"
 
 test_files = [instances_path*"01.txt", instances_path*"02.txt", instances_path*"03.txt", instances_path*"04.txt", instances_path*"05.txt", instances_path*"06.txt", instances_path*"07.txt", instances_path*"08.txt", instances_path*"09.txt", instances_path*"10.txt"]
 
-seed = 6 
-
-max_iterations = 1000
 #-------------------------------------------------------------------------------------------------------------------------------------------
+function main()
+    if length(ARGS) < 2
+        println("Uso: julia run_tests.jl <seed> <max_iterations>")
+        exit(1)
+    end
+    
+    seed = parse(Int, ARGS[1])
+    max_iterations = parse(Int, ARGS[2])
+    
+    #run_grasp_on_files(<test_files>, <seed>, <time>, <max_iterations>)
+    #run_grasp_optimized_on_files(<test_files>, <seed>, <time>, <max_iterations>, <n_candidates>)
+    #run_linear_on_files(<test_files>, <seed>, <time>)
 
-#run_grasp_on_files(test_files, seed, 5.0, max_iterations)
-#run_grasp_on_files(test_files, seed, 300.0, max_iterations)
-run_grasp_optimized_on_files(test_files, seed, 5.0, max_iterations, 8)
-run_grasp_optimized_on_files(test_files, seed, 300.0, max_iterations, 8)
-run_linear_on_files(test_files, seed, 5.0)
-run_linear_on_files(test_files, seed, 300.0)
-run_linear_on_files(test_files, seed, 3600.0)
+    run_grasp_on_files(test_files, seed, 5.0, max_iterations)
+    run_grasp_on_files(test_files, seed, 300.0, max_iterations)
+    run_grasp_optimized_on_files(test_files, seed, 5.0, max_iterations, 8)
+    run_grasp_optimized_on_files(test_files, seed, 300.0, max_iterations, 8)
+    run_linear_on_files(test_files, seed, 5.0)
+    run_linear_on_files(test_files, seed, 300.0)
+    run_linear_on_files(test_files, seed, 3600.0)
+end
+
+main()

@@ -1,6 +1,5 @@
 using Random
 using Printf
-using Statistics
 
 ########## Funções auxiliares ##########
 
@@ -185,14 +184,16 @@ end
 
 function main()
     if length(ARGS) < 4
-        println("Uso: julia solve_metaheuristica.jl <arquivo_instancia> <seed> <max_iterations> <time_limit(segundos)>")
+        println("Uso: julia grasp.jl <arquivo_instancia> <seed> <time_limit(segundos)> <max_iterations> ")
         exit(1)
     end
     
     filename = ARGS[1]
     seed = parse(Int, ARGS[2])
-    max_iterations = parse(Int, ARGS[3])
-    time_limit = parse(Float64, ARGS[4])
+    time_limit = parse(Float64, ARGS[3])
+    max_iterations = parse(Int, ARGS[4])
     grasp(filename, max_iterations, time_limit, seed)
 
 end
+
+#main()
