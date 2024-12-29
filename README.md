@@ -202,5 +202,47 @@ Após o fim das iterações ou ao atingir o limite de tempo o algorítmo retorna
 
 O algorítmo GRASP funciona especificamente bem com limites de tempo restritos, pois a solução gulosa, optimizada com a busca local, gera valores relativamente próximos à valores gerados com limites de tempo muitas ordens de grandeza maiores.
 
+### Testes com duração de 5 segundos:
+
+* 01.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |1034418|5.0|984|
+* 02.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |11976398|4.56|1000|
+* 03.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |45898177|5.0|479|
+* 04.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |34169225|5.01|509|
+* 05.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |8196666|5.01|34|
+* 06.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |29732090|5.22|23                        |
+* 07.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |206796746|4.61|1000|
+* 08.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |42627558|4.54|1000|
+* 09.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |8443590|5.01|103|
+* 10.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |48326460|5.04|89|
 
 
