@@ -245,4 +245,47 @@ O algorítmo GRASP funciona especificamente bem com limites de tempo restritos, 
     | ---------------- | ----- | ---------------------- |
     |48326460|5.04|89|
 
+### Testes com duração de 300 segundos:
+* 01.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |1034809|300.0|64821|
+* 02.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |11983213|300.0|65442|
+* 03.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |45898177|300.0|30548|
+* 04.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |34172895|300.0|28860|
+* 05.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |8197571|300.04|2007|
+* 06.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |29737000|300.01|1358|
+* 07.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |206863654|300.0|62964|
+* 08.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |42644514|300.0|64543|
+* 09.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |8450559|300.01|6329|
+* 10.txt
+  * | Melhor solução | Tempo | Numero de interações |
+    | ---------------- | ----- | ---------------------- |
+    |48332953|300.02|5398|
+
+
 
