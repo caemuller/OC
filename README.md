@@ -163,3 +163,44 @@ $$
   * | Melhor solução | Tempo | Numero de interações |
     | ---------------- | ----- | ---------------------- |
     |                  |       |                        |
+
+
+## Metaheurística 
+
+### GRASP - Greedy Randomized Adaptive Search Procedure
+
+O algoritmo GRASP pode ser definido em duas etapas: 
+* Geração da solução gulosa
+* Busca loca
+Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução.
+
+Nossa implementação em Julia do algorítmo utilisa essas etapas para encontrar soluções próximas à ótima no problema Bins and Balls com limites de tempo restritos.
+
+#### 1. Geração da solução gulosa
+   A solução gulosa é gerada inserindo as bolas nas bins mais promissoras até que não sobrem mais bolas não posicionadas.
+   Inicialmente, bolas são inseridas nas bins para atingir os limites inferiores.
+   Após isso, um laço é excecutado enquanto existem bolas livres:
+   |   O potencial de cada bin é calculado. O potencial é definido como a mudança na pontuação caso o bin fosse preenchido com bolas.
+   |   São selecionados os N bins candidatos com maior potencial. Na nossa implementação, N foi empiricamente definido como 8
+   |   Um bin aleatório dentre os candidatos é selecionado e preenchido com bolas. Caso não haja bolas suficientes, é enchido com todas as bolas restantes
+   |   O novo número de bolas é atualizado.
+   Ao fim do laço temos uma solução gulosa válida
+
+   Outras ideias foram testadas para a geração da solução gulosa, incluindo posicionar cada bola individualmente. Esta idea foi testada e é funcional, mas pode ser lenta.
+   Outra ideia possível seria testar a "densidade" do pontencial, isto é, ordenar as bins por quanto elas iriam aumentar a pontuação por bolinha.
+
+#### 2. Busca local
+   A busca local é feita gerando todos os vizinhos de uma solução, e escolhendo o que representa o maior aumento na função objetivo. 
+   O conceito de vizinhança utilizado é baseado na mudança máxima entre duas Bins distintas, isto é, para cada par direcionado de bins existe uma solução vizinha gerada movendo o maior número de balls do primeiro bin para o segundo. Esta vizinhança foi escolhida por sua eficiência, pois permite mover quantidades grandes de bolas por iteração da busca local. 
+   Foi implementada e testada a vizinhança baseada na mudança de uma única bola. Esta lógica permite algorítmos eficientes para achar o melhor vizinho, mas torna o algorítmo de busca local muito mais ineficiente, necessitando de mais iterações para encontrar algum ótimo local. Por estes motivos, esta opção foi desconsiderada.
+
+   Encontrado o melhor vizinho, caso exista, a nova solução é gerada e o valor armazenado da solução é atualizado com base na mudança das bolas, sem necessitar o cálculo completo do valor de cada bin.
+   Caso a solução já seja ótimo local, ou caso o número limite de iterações para a busca local (500, na nossa implementação) seja atingido, o valor atual é retornado, junto com a configuração de bolas encontrada.
+#
+
+Após o fim das iterações ou ao atingir o limite de tempo o algorítmo retorna a melhor solução encontrada, assim como dados de tempo de execução, número de iterações e valor da solução encontrada.
+
+O algorítmo GRASP funciona especificamente bem com limites de tempo restritos, pois a solução gulosa, optimizada com a busca local, gera valores relativamente próximos à valores gerados com limites de tempo muitas ordens de grandeza maiores.
+
+
+
