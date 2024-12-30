@@ -173,7 +173,7 @@ O algoritmo GRASP pode ser definido em duas etapas:
 * Geração da solução gulosa
 * Busca local
   
-Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução. Nossa implementação em Julia do algorítmo utilisa destas etapas para encontrar soluções próximas à ótima no problema Bins and Balls com limites de tempo e iterações restritos.
+Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução. Nossa implementação em Julia do algoritmo utilisa destas etapas para encontrar soluções próximas à ótima no problema Bins and Balls com limites de tempo e iterações restritos.
 
 #### 1. Geração da solução gulosa
 
@@ -193,14 +193,14 @@ Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o
 
    A busca local é feita gerando todos os vizinhos de uma solução, e escolhendo o que representa o maior aumento na função objetivo.
    O conceito de vizinhança utilizado é baseado na mudança máxima entre duas Bins distintas, isto é, para cada par direcionado de bins existe uma solução vizinha gerada movendo o maior número de balls do primeiro bin para o segundo. Esta vizinhança foi escolhida por sua eficiência, pois permite mover quantidades grandes de bolas por iteração da busca local.
-   Foi implementada e testada a vizinhança baseada na mudança de uma única bola. Esta lógica permite algorítmos eficientes para achar o melhor vizinho, mas torna o algorítmo de busca local muito mais ineficiente, necessitando de mais iterações para encontrar algum ótimo local. Por estes motivos, esta opção foi desconsiderada.
+   Foi implementada e testada a vizinhança baseada na mudança de uma única bola. Esta lógica permite algoritmos eficientes para achar o melhor vizinho, mas torna o algoritmo de busca local muito mais ineficiente, necessitando de mais iterações para encontrar algum ótimo local. Por estes motivos, esta opção foi desconsiderada.
 
    Encontrado o melhor vizinho, caso exista, a nova solução é gerada e o valor armazenado da solução é atualizado com base na mudança das bolas, sem necessitar o cálculo completo do valor de cada bin.
    Caso a solução já seja ótimo local, ou caso o número limite de iterações para a busca local (500, na nossa implementação) seja atingido, o valor atual é retornado, junto com a configuração de bolas encontrada.
 
-Após o fim das iterações ou ao atingir o limite de tempo o algorítmo retorna a melhor solução encontrada, assim como dados de tempo de execução, número de iterações e valor da solução encontrada.
+Após o fim das iterações ou ao atingir o limite de tempo o algoritmo retorna a melhor solução encontrada, assim como dados de tempo de execução, número de iterações e valor da solução encontrada.
 
-O algorítmo GRASP funciona especificamente bem com limites de tempo restritos, pois a solução gulosa, optimizada com a busca local, gera valores relativamente próximos à valores gerados com limites de tempo muitas ordens de grandeza maiores.
+O algoritmo GRASP funciona especificamente bem com limites de tempo restritos, pois a solução gulosa, optimizada com a busca local, gera valores relativamente próximos à valores gerados com limites de tempo muitas ordens de grandeza maiores.
 
 ### Testes com duração de 5 segundos:
 
