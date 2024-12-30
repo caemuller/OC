@@ -173,7 +173,7 @@ O algoritmo GRASP pode ser definido em duas etapas:
 * Geração da solução gulosa
 * Busca local
   
-Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução. Nossa implementação em Julia do algoritmo utilisa destas etapas para encontrar soluções próximas à ótima no problema Bins and Balls com limites de tempo e iterações restritos.
+Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o momento, durante o tempo limite de execução. Nossa implementação em Julia do algoritmo utiliza essas etapas para encontrar soluções próximas ao ótimo no problema Bins and Balls, considerando limites de tempo e iterações restritos.
 
 #### 1. Geração da solução gulosa
 
@@ -187,7 +187,7 @@ Essas etapas são repetidas, mantendo salva a melhor solução encontrada até o
    Ao fim do laço temos uma solução gulosa válida
 
    Outras ideias foram testadas para a geração da solução gulosa, incluindo posicionar cada bola individualmente. Esta idea foi testada e é funcional, mas pode ser lenta.
-   Outra ideia possível seria testar a "densidade" do pontencial, isto é, ordenar as bins por quanto elas iriam aumentar a pontuação por bolinha.
+   Uma ideia possível seria testar a "densidade" do potencial, ou seja, ordenar os bins com base no aumento proporcional da pontuação por bola.
 
 #### 2. Busca local
 
